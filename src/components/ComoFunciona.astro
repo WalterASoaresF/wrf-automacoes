@@ -1,0 +1,67 @@
+---
+import Ctas from './Ctas.astro';
+import { PASSOS } from '../data/site';
+---
+
+<section class="secao secao--nevoa como" id="como-funciona" aria-labelledby="como-titulo">
+  <div class="pagina">
+    <h2 id="como-titulo" class="titulo-secao">Como funciona</h2>
+
+    <ol class="como__passos">
+      {
+        PASSOS.map((passo, i) => (
+          <li class="passo">
+            <span class="passo__numero" aria-hidden="true">
+              {i + 1}
+            </span>
+            <p class="passo__texto">{passo}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <Ctas apenas="diagnostico" />
+  </div>
+</section>
+
+<style>
+  .como__passos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    margin-block: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .passo {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--preto);
+  }
+
+  .passo__numero {
+    font-size: var(--t-52);
+    font-weight: var(--peso-titulo);
+    font-stretch: var(--largura-titulo);
+    line-height: 1;
+  }
+
+  .passo__texto {
+    font-size: var(--t-20);
+    line-height: 1.4;
+    max-width: 24ch;
+  }
+
+  @media (max-width: 960px) {
+    .como__passos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .como__passos {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

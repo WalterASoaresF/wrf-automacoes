@@ -1,0 +1,55 @@
+---
+// Os dois CTAs do site, iguais no hero e na chamada final (seções 6.2, 6.9 e 7).
+import Setas from './Setas.astro';
+import { WHATSAPP_URL, FORM_URL, FORM_PENDENTE, CTA } from '../data/site';
+
+interface Props {
+  // Em "Como funciona" só aparece o botão do diagnóstico.
+  apenas?: 'diagnostico';
+}
+const { apenas } = Astro.props;
+---
+
+<div class="ctas">
+  {
+    !apenas && (
+      <div class="ctas__item">
+        <a class="botao botao--principal" href={WHATSAPP_URL} target="_blank" rel="noopener">
+          <span>{CTA.whatsapp.texto}</span>
+          <Setas />
+        </a>
+        <p class="nota">{CTA.whatsapp.nota}</p>
+      </div>
+    )
+  }
+  <div class="ctas__item">
+    {
+      FORM_PENDENTE ? (
+        <button class="botao botao--contorno" type="button" disabled>
+          {CTA.diagnostico.textoPendente}
+        </button>
+      ) : (
+        <a class="botao botao--contorno" href={FORM_URL} target="_blank" rel="noopener">
+          {CTA.diagnostico.texto}
+          <span class="visualmente-oculto"> (abre em nova aba)</span>
+        </a>
+      )
+    }
+    <p class="nota">{FORM_PENDENTE ? CTA.diagnostico.notaPendente : CTA.diagnostico.nota}</p>
+  </div>
+</div>
+
+<style>
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .ctas__item {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 22rem;
+  }
+</style>

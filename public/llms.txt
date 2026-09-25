@@ -1,0 +1,37 @@
+# WRF Automações
+
+> A WRF Automações atende negócios de Salvador e Lauro de Freitas (BA), com foco em restaurantes. Faz duas coisas: coloca o negócio na internet com um site preparado para aparecer no Google e em respostas de ferramentas de IA, e desenvolve software sob medida para tirar o trabalho repetitivo da equipe.
+
+## O que a WRF faz
+
+- Site profissional preparado para ser entendido e citado por buscadores e ferramentas de IA: endereço, horário, produtos e especialidades organizados em texto. Não garantimos primeira posição.
+- Software desenvolvido para a empresa, que assume tarefas repetitivas da equipe.
+- Análise de métricas de antes e depois do trabalho, entregue ao cliente.
+- Para restaurantes: cardápio digital acessado por QR Code na mesa, com fotos e sugestões de acompanhamento e bebida (regras automáticas definidas com o dono, não inteligência artificial), e painel de pedidos separado por mesa.
+
+## O que a WRF não faz
+
+- Não integra com o iFood.
+- Não cobra do cliente final: o pagamento continua na maquininha, com Pix, crédito ou débito.
+- O cardápio não pede nome, telefone nem CPF de quem faz o pedido.
+
+## Como funciona
+
+1. Diagnóstico gratuito, com um questionário rápido sobre o negócio.
+2. Reunião online ou presencial para entender demandas e gargalos.
+3. Site profissional e estrutura digital do negócio.
+4. Acompanhamento dos resultados. Prazo médio de implantação: uma semana, conforme o projeto.
+
+## Equipe
+
+Três sócios: João Felix (negócios e operação), Gustavo Rios (direito e contratos, LGPD) e Walter Soares (desenvolvimento fullstack).
+
+## Contato
+
+- WhatsApp: +55 71 98240-1839
+- Diagnóstico gratuito: https://tally.so/r/QKL4g1
+- Site: https://wrf-automacoes.pages.dev
+
+## Observação
+
+A demonstração do site usa o Casa do Dendê, um restaurante fictício. Os números mostrados nele são simulados.

@@ -1,0 +1,63 @@
+---
+// Botão fixo no celular (CLAUDE.md, seção 6.11): aparece depois que o hero sai da tela, some
+// quando a chamada final está visível. Escondida por padrão (fora da tela, "position: fixed"
+// não afeta o layout), então funciona mesmo sem JavaScript: sem JS ela simplesmente nunca
+// aparece, e o visitante ainda tem os botões do cabeçalho e do hero para falar no WhatsApp.
+import Setas from './Setas.astro';
+import { WHATSAPP_URL, CTA } from '../data/site';
+---
+
+<div class="barra-whatsapp" data-barra-whatsapp>
+  <a class="barra-whatsapp__link" href={WHATSAPP_URL} target="_blank" rel="noopener">
+    <span>{CTA.whatsappCurto}</span>
+    <Setas />
+  </a>
+</div>
+
+<style>
+  .barra-whatsapp {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    padding: 0.6rem var(--margem) calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    background: var(--branco);
+    border-top: 1px solid var(--linha);
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+
+  .barra-whatsapp.visivel {
+    transform: translateY(0);
+  }
+
+  .barra-whatsapp__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: var(--toque);
+    background: var(--cobalto);
+    color: var(--branco);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--raio);
+  }
+
+  @media (min-width: 761px) {
+    .barra-whatsapp {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .barra-whatsapp {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import '../scripts/barra-whatsapp';
+</script>

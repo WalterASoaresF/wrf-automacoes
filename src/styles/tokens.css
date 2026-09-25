@@ -1,0 +1,37 @@
+/* Tokens da marca WRF. Fonte da verdade para cor, tipo e espaço (CLAUDE.md, seções 4.2 e 4.3). */
+
+:root {
+  /* Cores */
+  --preto: #000000;
+  --branco: #ffffff;
+  --nevoa: #eef0f3;
+  --grafite: #565b63;
+  --linha: #d5d8dd;
+  --cobalto: #1e3cf5;
+
+  /* Tipografia: uma família, duas larguras */
+  --fonte: 'Archivo Variable', 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --largura-titulo: 125%;
+  --largura-texto: 100%;
+  --peso-titulo: 800;
+  --peso-texto: 400;
+  --peso-medio: 500;
+  --altura-linha: 1.6;
+  --medida: 70ch;
+
+  /* Escala 16 / 20 / 26 / 36 / 52 / 72, com clamp nos tamanhos grandes */
+  --t-16: 1rem;
+  --t-20: 1.25rem;
+  --t-26: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+  --t-36: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  --t-52: clamp(2rem, 1.2rem + 3.2vw, 3.25rem);
+  --t-72: clamp(2.25rem, 1rem + 5vw, 4.5rem);
+  --t-pequeno: 0.875rem;
+
+  /* Espaço e layout */
+  --pagina: 75rem; /* 1200 px */
+  --margem: clamp(1.25rem, 4vw, 2rem);
+  --secao: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --raio: 6px;
+  --toque: 44px;
+}

@@ -1,0 +1,226 @@
+---
+// No celular (≤860px): cada etapa com a sua captura logo abaixo do texto, rolagem normal.
+// No desktop (>860px): as capturas somem daqui e reaparecem, uma de cada vez, na moldura fixa
+// à direita (.demo__painel) — troca de acordo com a etapa que está em foco, via
+// src/scripts/demo-scroll.js. A moldura sempre mostra a etapa 1 por padrão, mesmo sem
+// JavaScript (seção 5 do CLAUDE.md: o conteúdo real de cada etapa continua no texto à esquerda).
+import Captura from './Captura.astro';
+import BuscaExemplo from './BuscaExemplo.astro';
+import { DEMO_ETAPAS, DEMO_TITULO, DEMO_INTRO } from '../data/site';
+---
+
+<section class="secao demo" id="demo" aria-labelledby="demo-titulo">
+  <div class="pagina">
+    <h2 id="demo-titulo" class="titulo-secao">{DEMO_TITULO}</h2>
+    <p class="texto-apoio demo__intro">{DEMO_INTRO}</p>
+
+    <div class="demo__corpo">
+      <ol class="demo__passos">
+        {
+          DEMO_ETAPAS.map((etapa, i) => (
+            <li class="etapa" data-etapa={i + 1}>
+              <div class="etapa__texto">
+                <span class="etapa__numero" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 class="etapa__titulo">{etapa.texto}</h3>
+                  {etapa.nota && <p class="nota etapa__nota">{etapa.nota}</p>}
+                </div>
+              </div>
+              <div class="etapa__captura">
+                {etapa.captura === 'busca' ? (
+                  <div class="etapa__busca">
+                    <BuscaExemplo />
+                  </div>
+                ) : (
+                  <Captura chave={etapa.captura} />
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="demo__painel" aria-hidden="true">
+        {
+          DEMO_ETAPAS.map((etapa, i) => (
+            <div class:list={['demo__painel-item', { ativo: i === 0 }]} data-etapa={i + 1}>
+              {etapa.captura === 'busca' ? (
+                <div class="etapa__busca">
+                  <BuscaExemplo />
+                </div>
+              ) : (
+                <Captura chave={etapa.captura} />
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Fundo branco (não mais preto): a sombra das telas só faz sentido sobre fundo claro */
+  .demo {
+    border-top: 1px solid var(--linha);
+  }
+
+  .demo__intro {
+    margin-top: 1.25rem;
+  }
+
+  .etapa__nota {
+    margin-top: 0.75rem;
+  }
+
+  .demo__corpo {
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .etapa {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem clamp(2rem, 6vw, 6rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--linha);
+  }
+
+  .etapa__texto {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.4rem 1.5rem;
+    align-items: start;
+  }
+
+  .etapa__numero {
+    font-size: var(--t-72);
+    font-weight: var(--peso-titulo);
+    font-stretch: var(--largura-titulo);
+    line-height: 0.9;
+    min-width: 1.1em;
+  }
+
+  .etapa__titulo {
+    font-size: var(--t-36);
+    max-width: 18ch;
+    padding-top: 0.2em;
+  }
+
+  .etapa__captura {
+    display: flex;
+    justify-content: center;
+  }
+
+  .etapa__busca {
+    width: min(100%, 26rem);
+  }
+
+  .etapa__captura :global(.captura--celular) {
+    width: min(100%, 16.5rem);
+  }
+
+  /* Moldura fixa: escondida por padrão (só existe a partir de 861px) */
+  .demo__painel {
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    /* A imagem entra de fora da tela; "clip" evita rolagem horizontal sem criar um
+       contêiner de rolagem */
+    .demo {
+      overflow-x: clip;
+    }
+
+    /* Entrada lateral (só quando demo-scroll.js marcou a seção): etapas ímpares vêm da
+       direita, pares da esquerda. Só transform e opacity (seção 5). */
+    .demo:global(.demo--animar) .etapa__captura > :global(*) {
+      opacity: 0;
+      transform: translateX(70%) rotate(4deg);
+      transition:
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+        opacity 0.5s ease;
+    }
+
+    .demo:global(.demo--animar) .etapa:nth-child(even) .etapa__captura > :global(*) {
+      transform: translateX(-70%) rotate(-4deg);
+    }
+
+    /* :nth-child(n) iguala a especificidade da regra das etapas pares, senão ela venceria */
+    .demo:global(.demo--animar) .etapa:nth-child(n) .etapa__captura:global(.visivel) > :global(*) {
+      opacity: 1;
+      transform: none;
+    }
+
+    .etapa {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .etapa__captura {
+      justify-content: flex-start;
+    }
+  }
+
+  /* Rolagem guiada: a partir daqui a captura de cada etapa some do texto e passa a
+     viver só na moldura fixa, que acompanha a rolagem (seção 4.4 do CLAUDE.md). */
+  @media (min-width: 861px) {
+    .demo__corpo {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(2rem, 6vw, 6rem);
+      align-items: start;
+    }
+
+    .etapa {
+      grid-template-columns: minmax(0, 1fr);
+      /* Cada etapa ocupa a tela inteira: dá a impressão de que a "tela" (a moldura fixa ao
+         lado) não muda de lugar — só o texto e a captura dentro dela mudam, como um vídeo. */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-block: 3rem;
+      /* No ritmo de uma tela por etapa, a linha divisória ficava solta, longe do texto */
+      border-top: 0;
+    }
+
+    .demo__corpo {
+      margin-top: 2rem;
+    }
+
+    .etapa__captura {
+      display: none;
+    }
+
+    .demo__painel {
+      display: block;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .demo__painel-item {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .demo__painel-item.ativo {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .demo__painel-item {
+        transition: none;
+      }
+    }
+  }
+</style>
+
+<script>
+  import '../scripts/demo-scroll';
+</script>

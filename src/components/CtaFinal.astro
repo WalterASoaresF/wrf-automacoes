@@ -1,0 +1,23 @@
+---
+import Ctas from './Ctas.astro';
+import { CTA_FINAL_TITULO } from '../data/site';
+---
+
+<section class="secao secao--escura cta-final" id="contato" aria-labelledby="cta-final-titulo">
+  <div class="pagina cta-final__conteudo">
+    <h2 id="cta-final-titulo" class="cta-final__titulo">{CTA_FINAL_TITULO}</h2>
+    <Ctas />
+  </div>
+</section>
+
+<style>
+  .cta-final__conteudo {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .cta-final__titulo {
+    font-size: var(--t-52);
+    max-width: 22ch;
+  }
+</style>

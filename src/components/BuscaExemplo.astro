@@ -1,0 +1,78 @@
+---
+// Caixa de busca desenhada em código, sem marca de buscador (seções 5 e 9).
+// Decorativa: aria-hidden. Na etapa 3 da construção, busca-animada.js alterna as frases de BUSCAS.
+import { BUSCAS, RESULTADO_EXEMPLO } from '../data/site';
+---
+
+<div class="busca" aria-hidden="true">
+  <div class="busca__campo">
+    <svg class="busca__lupa" viewBox="0 0 24 24" focusable="false">
+      <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+      <line x1="15" y1="15" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+    </svg>
+    <span class="busca__texto"
+      ><span data-buscas={JSON.stringify(BUSCAS)}>{BUSCAS[0]}</span><span class="busca__cursor"></span></span
+    >
+  </div>
+  <div class="busca__resultado">
+    <span class="busca__resultado-nome">{RESULTADO_EXEMPLO.nome}</span>
+    <span class="busca__resultado-descricao">{RESULTADO_EXEMPLO.descricao}</span>
+    <span class="busca__resultado-detalhe">{RESULTADO_EXEMPLO.detalhe}</span>
+  </div>
+</div>
+
+<style>
+  .busca {
+    border: 2px solid var(--preto);
+    border-radius: var(--raio);
+    background: var(--branco);
+    color: var(--preto);
+    overflow: hidden;
+  }
+
+  .busca__campo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-height: 5.5rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 2px solid var(--preto);
+    font-size: var(--t-20);
+    font-weight: var(--peso-medio);
+    line-height: 1.35;
+  }
+
+  .busca__lupa {
+    flex: none;
+    width: 1.35rem;
+    margin-top: 0.1rem;
+  }
+
+  .busca__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--cobalto);
+  }
+
+  .busca__resultado {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1.1rem 1.25rem 1.3rem;
+    border-left: 6px solid var(--cobalto);
+  }
+
+  .busca__resultado-nome {
+    font-weight: 800;
+    font-stretch: 125%;
+    font-size: var(--t-20);
+  }
+
+  .busca__resultado-descricao,
+  .busca__resultado-detalhe {
+    font-size: var(--t-pequeno);
+    color: var(--grafite);
+  }
+</style>

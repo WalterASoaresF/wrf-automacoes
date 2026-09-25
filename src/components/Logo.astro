@@ -1,0 +1,57 @@
+---
+// Marca real da WRF (src/assets/brandingmarca/), processada por scripts/gerar-imagens.mjs:
+// fundo branco recortado e trocado por transparência. Rodar "npm run gerar-imagens" de novo
+// sempre que os arquivos originais em brandingmarca/ mudarem.
+import { Image } from 'astro:assets';
+import logotipo from '../assets/brandingmarca/logotipo-preto.png';
+import isotipo from '../assets/brandingmarca/isotipo-preto.png';
+
+interface Props {
+  tamanho?: 'normal' | 'grande';
+}
+const { tamanho = 'normal' } = Astro.props;
+---
+
+<span class:list={['logo', `logo--${tamanho}`]}>
+  <Image class="logo__completo" src={logotipo} alt="WRF Automações" width={380} /* 2x de ~1.9rem, a maior altura que o logo completo usa */ />
+  <Image class="logo__compacto" src={isotipo} alt="WRF Automações" width={110} /* 2x de ~2.6rem, a maior altura que o símbolo sozinho usa */ />
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo :global(img) {
+    width: auto;
+  }
+
+  .logo__completo {
+    height: 1.4rem;
+  }
+
+  .logo__compacto {
+    height: 2.1rem;
+    display: none;
+  }
+
+  .logo--grande .logo__completo {
+    height: 1.9rem;
+  }
+
+  .logo--grande .logo__compacto {
+    height: 2.6rem;
+  }
+
+  /* Abaixo de 480px o texto "Automações" fica pequeno demais para ler; troca pelo símbolo sozinho */
+  @media (max-width: 480px) {
+    .logo__completo {
+      display: none;
+    }
+
+    .logo__compacto {
+      display: block;
+    }
+  }
+</style>

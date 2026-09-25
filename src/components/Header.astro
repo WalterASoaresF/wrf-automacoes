@@ -1,0 +1,191 @@
+---
+import Logo from './Logo.astro';
+import { WHATSAPP_URL, CTA } from '../data/site';
+
+const links = [
+  { href: '#como-funciona', texto: 'Como funciona' },
+  { href: '#time', texto: 'Time' },
+  { href: '#duvidas', texto: 'Dúvidas' },
+];
+---
+
+<header class="cabecalho">
+  <div class="pagina cabecalho__barra">
+    <a class="cabecalho__logo" href={import.meta.env.BASE_URL}>
+      <Logo />
+    </a>
+
+    <nav class="cabecalho__nav" aria-label="Principal">
+      <ul class="cabecalho__links">
+        {links.map((link) => <li><a href={link.href}>{link.texto}</a></li>)}
+      </ul>
+    </nav>
+
+    <!-- No celular os links vão para este menu; <details> abre e fecha sem JavaScript -->
+    <details class="cabecalho__menu">
+      <summary>
+        <span class="visualmente-oculto">Menu</span>
+        <span class="cabecalho__icone" aria-hidden="true"><span></span><span></span><span></span></span>
+      </summary>
+      <nav aria-label="Principal no celular">
+        <ul>
+          {links.map((link) => <li><a href={link.href}>{link.texto}</a></li>)}
+        </ul>
+      </nav>
+    </details>
+
+    <a class="botao botao--principal cabecalho__whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener">
+      <span class="cabecalho__whatsapp-completo">{CTA.whatsappCurto}</span>
+      <span class="cabecalho__whatsapp-curto" aria-hidden="true">WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .cabecalho {
+    border-bottom: 1px solid var(--linha);
+  }
+
+  .cabecalho__barra {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4.5rem;
+  }
+
+  .cabecalho__logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque);
+    margin-right: auto;
+    color: var(--preto);
+    text-decoration: none;
+  }
+
+  /* Entrada do hero (CLAUDE.md, seção 5): a marca desliza da esquerda ao carregar a página,
+     junto com o título do hero. Ver a nota sobre prefers-reduced-motion em global.css. */
+  .cabecalho__logo :global(img) {
+    animation: entrar-da-esquerda 0.45s ease-out both;
+  }
+
+  .cabecalho__links {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .cabecalho__links a,
+  .cabecalho__menu a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque);
+    padding-inline: 0.85rem;
+    color: var(--preto);
+    font-weight: var(--peso-medio);
+    text-decoration: none;
+  }
+
+  .cabecalho__links a:hover,
+  .cabecalho__menu a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  .cabecalho__whatsapp {
+    flex: none;
+    min-height: var(--toque);
+    padding-block: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .cabecalho__whatsapp-curto {
+    display: none;
+  }
+
+  .cabecalho__icone {
+    display: grid;
+    gap: 5px;
+    width: 22px;
+  }
+
+  .cabecalho__icone span {
+    height: 2px;
+    background: currentColor;
+  }
+
+  .cabecalho__menu {
+    display: none;
+  }
+
+  .cabecalho__menu summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--toque);
+    min-height: var(--toque);
+    font-weight: var(--peso-medio);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .cabecalho__menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .cabecalho__menu[open] summary {
+    color: var(--cobalto);
+  }
+
+  .cabecalho__menu nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    padding: 0.5rem var(--margem) 1rem;
+    background: var(--branco);
+    border-bottom: 1px solid var(--linha);
+  }
+
+  .cabecalho__menu a {
+    width: 100%;
+    padding-inline: 0;
+    font-size: var(--t-20);
+  }
+
+  @media (max-width: 760px) {
+    .cabecalho__nav {
+      display: none;
+    }
+
+    .cabecalho__menu {
+      display: block;
+      order: 1;
+    }
+
+    .cabecalho__barra {
+      gap: 0.5rem;
+    }
+
+    .cabecalho__whatsapp {
+      padding-inline: 0.75rem;
+      font-size: 0.9375rem;
+    }
+  }
+
+  /* Telas estreitas: botão encurtado; o nome acessível continua "Falar no WhatsApp" */
+  @media (max-width: 389px) {
+    .cabecalho__whatsapp-completo {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .cabecalho__whatsapp-curto {
+      display: inline;
+    }
+  }
+</style>

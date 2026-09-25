@@ -1,0 +1,94 @@
+---
+import '@fontsource-variable/archivo/wdth.css';
+import '../styles/global.css';
+import fonteLatina from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import { SITE, WHATSAPP_NUMERO, FAQ_PUBLICADO } from '../data/site';
+
+// Arquivos de public/ respeitam a subpasta do build (ver astro.config.mjs).
+const raiz = import.meta.env.BASE_URL.replace(/\/$/, '');
+const publico = (arquivo: string) => `${raiz}/${arquivo}`;
+// Endereços absolutos a partir de onde o site foi publicado, para a prévia de link
+// (WhatsApp etc.) funcionar tanto na prévia do GitHub Pages quanto no Cloudflare.
+const absoluto = (caminho: string) => new URL(caminho, Astro.site ?? SITE.url).href;
+
+const canonica = absoluto(Astro.url.pathname);
+const ogImagem = absoluto(publico('og-image.png'));
+// Prévia (GitHub Pages): fora dos buscadores, para não concorrer com o site oficial.
+const previa = import.meta.env.PUBLIC_PREVIA === '1';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#organizacao`,
+      name: SITE.nome,
+      url: SITE.url,
+      logo: absoluto(publico('logo.png')),
+      telephone: `+${WHATSAPP_NUMERO}`,
+      description:
+        'Site preparado para o Google e para ferramentas de IA e software sob medida para automatizar tarefas repetitivas. Para restaurantes, cardápio digital com QR Code e painel de pedidos por mesa.',
+      areaServed: SITE.areaAtendida.map((cidade) => ({
+        '@type': 'City',
+        name: cidade,
+        containedInPlace: { '@type': 'State', name: 'Bahia' },
+      })),
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: `+${WHATSAPP_NUMERO}`,
+        contactType: 'sales',
+        availableLanguage: 'Portuguese',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/#duvidas`,
+      mainEntity: FAQ_PUBLICADO.map((item) => ({
+        '@type': 'Question',
+        name: item.pergunta,
+        acceptedAnswer: { '@type': 'Answer', text: item.resposta },
+      })),
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{SITE.titulo}</title>
+    <meta name="description" content={SITE.descricao} />
+    <link rel="canonical" href={canonica} />
+    <meta name="theme-color" content="#000000" />
+
+    <link rel="preload" href={fonteLatina} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href={publico('favicon.png')} type="image/png" sizes="48x48" />
+    <link rel="icon" href={publico('favicon-192.png')} type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href={publico('apple-touch-icon.png')} />
+    <link rel="sitemap" href={publico('sitemap-index.xml')} />
+    {previa && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={SITE.nome} />
+    <meta property="og:title" content={SITE.titulo} />
+    <meta property="og:description" content={SITE.descricao} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={ogImagem} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="WRF Automações: presença digital e automação para negócios em Salvador." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+    <slot />
+    <script>
+      import '../scripts/busca-animada';
+    </script>
+  </body>
+</html>

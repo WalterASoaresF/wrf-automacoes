@@ -1,0 +1,97 @@
+---
+import Logo from './Logo.astro';
+import { SITE, WHATSAPP_URL, WHATSAPP_EXIBICAO, FORM_URL, FORM_PENDENTE, CTA } from '../data/site';
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="rodape">
+  <div class="pagina rodape__grade">
+    <Logo tamanho="grande" />
+
+    <ul class="rodape__contatos">
+      <li>
+        <span class="rodape__rotulo">WhatsApp</span>
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_EXIBICAO}</a>
+      </li>
+      <li>
+        <span class="rodape__rotulo">Diagnóstico gratuito</span>
+        {
+          FORM_PENDENTE ? (
+            <span>{CTA.diagnostico.textoPendente}</span>
+          ) : (
+            <a href={FORM_URL} target="_blank" rel="noopener">
+              {CTA.diagnostico.texto}
+            </a>
+          )
+        }
+      </li>
+      <li>
+        <span class="rodape__rotulo">Onde atendemos</span>
+        <span>{SITE.cidadesTexto}</span>
+      </li>
+    </ul>
+
+    <div class="rodape__base">
+      <p>© {ano} {SITE.nome}</p>
+      <p>Este site não usa cookies de rastreamento.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .rodape {
+    padding-block: clamp(3rem, 5vw, 4.5rem) 2rem;
+    border-top: 1px solid var(--linha);
+  }
+
+  .rodape__grade {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .rodape__contatos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .rodape__contatos li {
+    display: grid;
+    gap: 0.25rem;
+    align-content: start;
+  }
+
+  .rodape__contatos a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque);
+    font-weight: var(--peso-medio);
+  }
+
+  .rodape__rotulo {
+    color: var(--grafite);
+    font-size: var(--t-pequeno);
+  }
+
+  .rodape__base {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--linha);
+    color: var(--grafite);
+    font-size: var(--t-pequeno);
+  }
+
+  @media (max-width: 760px) {
+    .rodape__grade,
+    .rodape__contatos {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

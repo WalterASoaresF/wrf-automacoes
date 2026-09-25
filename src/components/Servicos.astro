@@ -1,0 +1,252 @@
+---
+// O que a WRF vai fazer por você (CLAUDE.md, seção 6.4): cartões em rolagem horizontal.
+// A trilha rola com o dedo, a roda do mouse/trackpad e o teclado (é focável), e encaixa em cada
+// cartão (scroll-snap). As setas só aparecem com JavaScript (src/scripts/servicos.js); sem ele a
+// trilha continua rolando normalmente.
+// O último cartão fecha a ideia ("O resultado?") e usa a cor de destaque.
+import { SERVICOS, SERVICOS_TITULO } from '../data/site';
+
+// Ícones de linha, desenhados aqui (sem biblioteca): 24x24, traço de 2px, cor do texto.
+const ICONES = {
+  busca: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/>',
+  engrenagem:
+    '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M5.5 18.5l2.1-2.1M16.4 7.6l2.1-2.1"/>',
+  pessoa: '<circle cx="12" cy="8" r="3.8"/><path d="M4.5 21c.8-4.2 3.8-6.5 7.5-6.5s6.7 2.3 7.5 6.5"/>',
+  grafico: '<path d="M3.5 20.5h17"/><path d="M6.5 16.5v-4M11 16.5V8.5M15.5 16.5v-6M20 16.5V5"/>',
+};
+---
+
+<section class="secao servicos" id="servicos" aria-labelledby="servicos-titulo">
+  <div class="pagina servicos__topo">
+    <h2 id="servicos-titulo" class="titulo-secao">{SERVICOS_TITULO}</h2>
+    <div class="servicos__setas" data-servicos-setas hidden>
+      <button class="servicos__seta" type="button" data-direcao="-1" aria-label="Ver cartão anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"></path></svg>
+      </button>
+      <button class="servicos__seta" type="button" data-direcao="1" aria-label="Ver próximo cartão">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <ul class="servicos__trilha" data-servicos-trilha tabindex="0" aria-label="O que a WRF faz, role para o lado">
+    {
+      SERVICOS.map((servico) => (
+        <li class:list={['servico', { 'servico--destaque': servico.destaque }]}>
+          <div class="servico__topo">
+            {servico.icone && (
+              <span class="servico__icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" set:html={ICONES[servico.icone]} />
+              </span>
+            )}
+            <h3 class="servico__rotulo">{servico.rotulo}</h3>
+          </div>
+          <div class="servico__corpo">
+            <p class="servico__texto">{servico.texto}</p>
+            {servico.nota && <p class="servico__nota">{servico.nota}</p>}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .servicos__topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .servicos__setas {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .servicos__setas[hidden] {
+    display: none;
+  }
+
+  /* No celular rola-se com o dedo; as setas só ocupariam espaço */
+  @media (max-width: 760px) {
+    .servicos__setas {
+      display: none;
+    }
+  }
+
+  .servicos__seta {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 2px solid var(--preto);
+    border-radius: 50%;
+    background: var(--branco);
+    color: var(--preto);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .servicos__seta svg {
+    width: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .servicos__seta:hover:not(:disabled) {
+    background: var(--preto);
+    color: var(--branco);
+  }
+
+  .servicos__seta:active:not(:disabled) {
+    transform: scale(0.94);
+  }
+
+  .servicos__seta:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  /* A trilha ocupa a largura da tela; o respiro lateral alinha o primeiro cartão com o texto
+     da página e deixa o último "sangrar" até a borda. */
+  .servicos__trilha {
+    --respiro: max(var(--margem), calc((100% - var(--pagina)) / 2));
+    display: flex;
+    gap: 1.25rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: 0.75rem var(--respiro) 1.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--respiro);
+    scrollbar-width: thin;
+    scrollbar-color: var(--linha) transparent;
+  }
+
+  .servicos__trilha:focus-visible {
+    outline-offset: -2px;
+  }
+
+  .servico {
+    position: relative;
+    flex: 0 0 min(82vw, 22rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5rem;
+    min-height: 23rem;
+    padding: 1.75rem;
+    border: 2px solid var(--preto);
+    border-radius: 1rem;
+    background: var(--branco);
+    scroll-snap-align: start;
+    transition: transform 0.25s ease;
+  }
+
+  /* Sombra num pseudo-elemento, para animar só opacidade (seção 5: só transform e opacity) */
+  .servico::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: 0 1.25rem 2.5rem -1rem rgb(0 0 0 / 0.3);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .servico:hover {
+    transform: translateY(-6px);
+  }
+
+  .servico:hover::after {
+    opacity: 1;
+  }
+
+  .servico__topo {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+
+  /* O ícone se preenche de cobalto quando o cartão recebe o mouse */
+  .servico__icone {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border: 2px solid var(--cobalto);
+    border-radius: 50%;
+    color: var(--cobalto);
+    background: var(--branco);
+    transition: transform 0.25s ease;
+  }
+
+  .servico__icone svg {
+    width: 1.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .servico:hover .servico__icone {
+    background: var(--cobalto);
+    color: var(--branco);
+    transform: rotate(-8deg) scale(1.06);
+  }
+
+  .servico__rotulo {
+    color: var(--cobalto);
+    font-size: var(--t-20);
+    font-stretch: var(--largura-texto);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+
+  .servico__texto {
+    font-size: var(--t-26);
+    font-weight: var(--peso-medio);
+    line-height: 1.3;
+  }
+
+  .servico__nota {
+    margin-top: 1rem;
+    color: var(--grafite);
+    font-size: var(--t-pequeno);
+    line-height: 1.45;
+  }
+
+  .servico--destaque {
+    border-color: var(--cobalto);
+    background: var(--cobalto);
+    color: var(--branco);
+  }
+
+  .servico--destaque .servico__rotulo {
+    color: var(--branco);
+    font-size: var(--t-36);
+    font-stretch: var(--largura-titulo);
+    font-weight: var(--peso-titulo);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .servico,
+    .servico::after,
+    .servico__icone,
+    .servicos__seta {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import '../scripts/servicos';
+</script>

@@ -1,0 +1,103 @@
+---
+// Dores (CLAUDE.md, seção 6.3): situações que o dono reconhece, em cartões.
+// No desktop os quatro cabem numa linha; em telas menores viram uma trilha com rolagem
+// horizontal e encaixe, que encosta nas bordas da tela (mesmo padrão dos serviços).
+import { DORES, DORES_TITULO } from '../data/site';
+---
+
+<section class="secao secao--nevoa dores" aria-labelledby="dores-titulo">
+  <div class="pagina">
+    <h2 id="dores-titulo" class="dores__titulo">{DORES_TITULO}</h2>
+  </div>
+  <ul class="dores__trilha" tabindex="0" aria-label="Situações comuns, role para o lado">
+    {
+      DORES.map((dor) => (
+        <li class="dor">
+          <span class="dor__marca" aria-hidden="true" />
+          <p class="dor__texto">{dor}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .dores {
+    padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  }
+
+  .dores__titulo {
+    font-size: var(--t-36);
+    max-width: 20ch;
+  }
+
+  .dores__trilha {
+    --respiro: max(var(--margem), calc((100% - var(--pagina)) / 2));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+    padding-inline: var(--respiro);
+  }
+
+  .dor {
+    display: grid;
+    align-content: space-between;
+    gap: 2rem;
+    min-height: 13rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--branco);
+  }
+
+  /* Um "x" discreto: o que dá errado hoje */
+  .dor__marca {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .dor__marca::before,
+  .dor__marca::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 2.5px;
+    margin-top: -1px;
+    border-radius: 2px;
+    background: var(--cobalto);
+    transform: rotate(45deg);
+  }
+
+  .dor__marca::after {
+    transform: rotate(-45deg);
+  }
+
+  .dor__texto {
+    font-size: var(--t-20);
+    font-weight: var(--peso-medio);
+    line-height: 1.35;
+  }
+
+  .dores__trilha:focus-visible {
+    outline-offset: -2px;
+  }
+
+  /* Tablet e celular: trilha horizontal */
+  @media (max-width: 1000px) {
+    .dores__trilha {
+      display: flex;
+      padding-bottom: 0.75rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--respiro);
+      scrollbar-width: thin;
+      scrollbar-color: var(--linha) transparent;
+    }
+
+    .dor {
+      flex: 0 0 min(75vw, 17rem);
+      scroll-snap-align: start;
+    }
+  }
+</style>

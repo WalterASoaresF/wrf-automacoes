@@ -1,0 +1,275 @@
+@import './tokens.css';
+
+/* Animações de entrada (CLAUDE.md, seção 5). Definidas só quando a pessoa não pediu para
+   reduzir movimento: fora desse media query os nomes "entrar-*" não existem, então qualquer
+   `animation: entrar-*` vira um no-op silencioso e o elemento nasce direto no estado final —
+   sem precisar duplicar a regra "desligar animação" em cada componente. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes entrar-da-esquerda {
+    from {
+      opacity: 0;
+      transform: translateX(-14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Letra escondida logo abaixo da "janela" da palavra, subindo para o lugar */
+  @keyframes subir-da-mascara {
+    from {
+      transform: translateY(115%);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes entrar-de-baixo {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--preto);
+  font-family: var(--fonte);
+  font-size: var(--t-16);
+  font-weight: var(--peso-texto);
+  font-stretch: var(--largura-texto);
+  line-height: var(--altura-linha);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: var(--peso-titulo);
+  font-stretch: var(--largura-titulo);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--cobalto);
+  text-underline-offset: 0.18em;
+}
+
+/* Foco visível: contorno cobalto de 2 px em tudo que é interativo */
+:focus-visible {
+  outline: 2px solid var(--cobalto);
+  outline-offset: 3px;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-para-conteudo {
+  position: absolute;
+  left: var(--margem);
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--preto);
+  color: var(--branco);
+}
+
+.pular-para-conteudo:focus {
+  top: 0.5rem;
+}
+
+/* Layout */
+.pagina {
+  width: 100%;
+  max-width: calc(var(--pagina) + 2 * var(--margem));
+  margin-inline: auto;
+  padding-inline: var(--margem);
+}
+
+.secao {
+  padding-block: var(--secao);
+}
+
+.secao--nevoa {
+  background: var(--nevoa);
+}
+
+.secao--escura {
+  background: var(--preto);
+  color: var(--branco);
+}
+
+.titulo-secao {
+  font-size: var(--t-52);
+  max-width: 20ch;
+}
+
+.texto-apoio {
+  font-size: var(--t-20);
+  color: var(--grafite);
+  max-width: var(--medida);
+}
+
+.secao--escura .texto-apoio {
+  color: var(--linha);
+}
+
+/* Botões */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 3.25rem;
+  min-width: var(--toque);
+  padding: 0.8rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: var(--raio);
+  font: inherit;
+  font-weight: 700;
+  font-size: var(--t-16);
+  line-height: 1.25;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  /* Resposta a toque (seção 5): só transform, nunca propriedade que recalcula layout. */
+  transition: transform 0.15s ease;
+}
+
+.botao:hover,
+.botao:focus-visible {
+  transform: translateY(-2px);
+}
+
+.botao:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .botao {
+    transition: none;
+  }
+}
+
+.botao--principal {
+  background: var(--cobalto);
+  color: var(--branco);
+}
+
+.botao--principal:hover {
+  background: #1630d4;
+}
+
+.botao--contorno {
+  background: transparent;
+  color: var(--preto);
+  border-color: var(--preto);
+}
+
+.botao--contorno:hover {
+  background: var(--preto);
+  color: var(--branco);
+}
+
+.botao--principal:hover .botao__setas,
+.botao--principal:focus-visible .botao__setas {
+  transform: translateX(3px);
+}
+
+.secao--escura .botao--contorno {
+  color: var(--branco);
+  border-color: var(--branco);
+}
+
+.secao--escura .botao--contorno:hover {
+  background: var(--branco);
+  color: var(--preto);
+}
+
+.botao:disabled,
+.botao[aria-disabled='true'] {
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--grafite);
+  border-color: var(--linha);
+  border-style: dashed;
+}
+
+.secao--escura .botao:disabled {
+  color: var(--linha);
+  border-color: var(--grafite);
+}
+
+.botao__setas {
+  flex: none;
+  width: 1.1em;
+  height: auto;
+  transition: transform 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .botao__setas {
+    transition: none;
+  }
+}
+
+.nota {
+  font-size: var(--t-pequeno);
+  color: var(--grafite);
+}
+
+.secao--escura .nota {
+  color: var(--linha);
+}

@@ -1,0 +1,59 @@
+---
+// Texto que "sobe" letra a letra ao carregar a página (entrada do hero, CLAUDE.md seção 5).
+//
+// Cada palavra é uma janela (overflow: hidden) e cada letra começa escondida logo abaixo dela e
+// sobe para o lugar. O atraso cresce palavra a palavra, com um passo pequeno entre as letras,
+// então a leitura é "de baixo para cima", não uma varredura para o lado.
+//
+// Tudo é gerado no build: nenhum JavaScript no navegador. O texto real fica num span
+// visualmente oculto (leitor de tela, busca); a versão letra a letra é aria-hidden. Os espaços
+// entre palavras são espaços de verdade, então a quebra de linha continua natural.
+// Sob prefers-reduced-motion o @keyframes não existe (ver global.css) e o texto nasce pronto.
+interface Props {
+  texto: string;
+  /** ms antes da primeira letra começar a subir */
+  inicio?: number;
+  /** ms entre uma palavra e a seguinte */
+  passoPalavra?: number;
+  /** ms entre letras da mesma palavra */
+  passoLetra?: number;
+}
+const { texto, inicio = 0, passoPalavra = 35, passoLetra = 12 } = Astro.props;
+
+const palavras = texto.split(' ').map((palavra, p) =>
+  [...palavra].map((char, l) => ({ char, atraso: inicio + p * passoPalavra + l * passoLetra })),
+);
+---
+
+<span class="visualmente-oculto">{texto}</span><span class="revelar" aria-hidden="true"
+  >{
+    palavras.map((letras, p) => (
+      <>
+        <span class="revelar__palavra">
+          {letras.map((l) => (
+            <span class="revelar__letra" style={`animation-delay:${l.atraso}ms`}>
+              {l.char}
+            </span>
+          ))}
+        </span>
+        {p < palavras.length - 1 && ' '}
+      </>
+    ))
+  }</span
+>
+
+<style>
+  .revelar__palavra {
+    display: inline-block;
+    overflow: hidden;
+    /* folga para acentos e descendentes (ç, g, p) não serem cortados pela janela */
+    padding-block: 0.12em;
+    margin-block: -0.12em;
+    vertical-align: bottom;
+  }
+
+  .revelar__letra {
+    display: inline-block;
+    animation: subir-da-mascara 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+</style>
