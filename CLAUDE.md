@@ -196,18 +196,19 @@ Logo, links "Como funciona", "Time", "Dúvidas", e botão "Falar no WhatsApp". N
 
 ### 6.2 Hero
 Enxuto: no celular precisa caber em pouco mais de uma tela. Todo o texto sobe letra a letra ao carregar (seção 5).
-- **H1:** "Quando procuram o que você vende, você aparece antes do concorrente?"
-- **Apoio:** "A WRF coloca seu negócio na internet e tira o trabalho repetitivo da sua equipe."
-- **Botões:** "Quero sair na frente da concorrência" (WhatsApp, cobalto) e "Fazer diagnóstico gratuito" (contorno). No celular, as notas pequenas abaixo dos botões ficam escondidas no hero (continuam na chamada final).
+- **H1:** "Perdendo clientes para a concorrência porque não te acham na internet?" (em forma de pergunta, para não afirmar algo sobre quem lê).
+- **Chamada:** "Na dúvida? Faça o diagnóstico gratuito."
+- **Botões, um embaixo do outro:** "Fazer diagnóstico gratuito" (principal, cobalto) e, abaixo, "Quero sair na frente da concorrência" (WhatsApp, contorno). No celular, as notas pequenas abaixo dos botões ficam escondidas no hero (continuam na chamada final, onde a ordem padrão se mantém: WhatsApp em cobalto primeiro).
 - **Dado citado, com fonte visível:** "46% dos entrevistados recorrem à tecnologia para pesquisar produtos ou serviços antes de comprar." Fonte: Estudo Prompt-me (Fbiz e On The Go), set. 2026. No desktop ocupa a coluna da direita, com o número grande; no celular fica compacto, depois dos botões. **Conferir o texto exato e o público do estudo antes de publicar** (seção 9).
 - A caixa de busca animada saiu do hero (25/09/2026) e vive só na etapa 1 da demo.
 
-### 6.3 Dores (seção curta, fundo Névoa, cartões)
-Título: "Isso acontece no seu negócio?" Quatro cartões brancos com um "x" em cobalto. No desktop cabem numa linha; abaixo de 1000px viram trilha com rolagem horizontal e encaixe.
-- "Quem procura na internet encontra o seu concorrente, não você."
-- "Tudo ainda é feito à mão, sem nenhum sistema, e o negócio passa uma imagem de ultrapassado."
-- "No horário de pico vira bagunça, e quem sente é o cliente."
-- "Sua equipe gasta horas em tarefas repetitivas em vez de cuidar do que faz o negócio crescer."
+### 6.3 Dores (seção curta, fundo Névoa, cartões com ícone)
+Título: "Isso acontece no seu negócio?" Cinco cartões com ícone de linha; as frases 3 e 4 continuam de um cartão para o outro (reticências) e o último cartão, em preto, fecha. Em telas largas cabem numa linha; abaixo de 1100px viram trilha com rolagem horizontal e encaixe.
+1. "Quem procura na internet encontra o seu concorrente, não você." (lupa)
+2. "Tudo ainda é feito à mão, sem nenhum sistema, e o negócio passa uma imagem de ultrapassado." (documento)
+3. "No horário de pico vira bagunça: o cliente sente, a organização interna trava e a sua equipe…" (relógio)
+4. "…passa horas em tarefas repetitivas em vez de cuidar do que faz o negócio crescer." (setas de repetição)
+5. "No fim das contas, você sente que poderia ganhar mais pela qualidade do que vende." (moeda)
 
 ### 6.4 O que a WRF vai fazer por você (cartões em rolagem horizontal, sem capturas)
 Cartões com ícone de linha, rolagem horizontal com encaixe (scroll-snap), setas no desktop, arrasto no celular. O último cartão, em cobalto, fecha a ideia.
@@ -217,19 +218,19 @@ Cartões com ícone de linha, rolagem horizontal com encaixe (scroll-snap), seta
 4. **Resultado comprovado.** "Você recebe uma análise das métricas de antes e depois do nosso trabalho, para ver o resultado nos seus próprios números."
 5. **O resultado?** "Cliente mais satisfeito, equipe menos sobrecarregada e mais dinheiro no seu bolso."
 
-### 6.5 Demo: "O que fazemos por um restaurante" (o elemento memorável, fundo branco)
-Introdução: "O caminho de um pedido, da busca no Google ao painel do dono, no Casa do Dendê, restaurante fictício que criamos para demonstração. Em outro tipo de negócio, adaptamos cada etapa à sua demanda." Desde que a busca saiu do hero, é aqui que o Casa do Dendê é identificado como fictício (seção 9).
+### 6.5 Demo: "O que fazemos por um negócio" (o elemento memorável, fundo branco)
+Introdução: "Da busca à compra, da compra ao painel do proprietário. Para demonstrar, usamos o Casa do Dendê, um restaurante fictício. Em outro tipo de negócio, adaptamos cada etapa à sua demanda." Desde que a busca saiu do hero, é aqui que o Casa do Dendê é identificado como fictício (seção 9).
 
 No celular, cada captura entra pela lateral da página quando chega na tela (etapas ímpares pela direita, pares pela esquerda).
 
 Fundo branco, para que a sombra das telas faça sentido. Sete etapas com as capturas do Casa do Dendê:
-1. O cliente pergunta ao Google ou a uma IA onde comer.
+1. O cliente pergunta ao Google ou a uma IA onde comer, e o restaurante aparece em destaque.
 2. Encontra o site do restaurante (captura da landing).
 3. Na mesa, escaneia o QR Code.
-4. Monta o pedido pelo cardápio (captura do cardápio).
-5. O cardápio sugere uma bebida, e ele aceita (captura do carrinho com sugestão).
+4. E monta o pedido pelo cardápio (captura do cardápio; o "E" dá continuidade à etapa 3).
+5. Mais que um PDF: o cardápio sugere complementos para o pedido, e ele aceita (captura do carrinho com sugestão).
 6. Depois do pedido, ele avalia a experiência sem precisar se identificar (captura da tela de avaliação).
-7. O dono vê quanto as sugestões venderam a mais (captura do painel de resultados). Nota: "Números simulados do restaurante de demonstração."
+7. O proprietário tem um painel onde comprova que as melhorias estão se pagando (captura do painel de resultados). Nota: "Números simulados do restaurante de demonstração."
 
 A caixa de aviso do topo da seção foi removida a pedido da equipe (a introdução já identifica o Casa do Dendê como fictício). A identificação dos números como simulados continua obrigatória e fica na etapa 7, onde eles aparecem (seção 9).
 
@@ -242,14 +243,14 @@ A caixa de aviso do topo da seção foi removida a pedido da equipe (a introduç
 Seguido do botão "Fazer diagnóstico gratuito".
 
 ### 6.7 Nosso time (obrigatória)
-Texto de abertura: "Somos três sócios. Cada um cuida de uma parte do que entregamos." No celular, os três blocos viram uma trilha com rolagem horizontal.
+Só o título "Nosso time", sem texto de abertura. No celular, os três blocos viram uma trilha com rolagem horizontal.
 
 Três blocos com foto real, área, nome, descrição e frase:
 - **Negócios e operação — João Felix.** O empreendedor da equipe. Cuida da relação com o seu negócio e da implantação. Frase: "Está à disposição para te atender da melhor forma possível."
-- **Direito e contratos — Gustavo Rios.** Cuida de contratos claros e do uso responsável dos dados, de acordo com a LGPD. Frase: "Papelada, contrato e parte jurídica? Disso a gente cuida, sem dor de cabeça para você."
-- **Desenvolvedor Fullstack — Walter Soares.** Constrói e mantém o site e os sistemas de cada cliente. Frase: "Ouve suas demandas com atenção e usa o que sabe para desenvolver o software ideal para o seu negócio."
+- **Jurídico e contratos — Gustavo Rios.** Elabora toda a parte contratual, com atenção ao uso responsável dos seus dados, de acordo com a LGPD. Frase: "Papelada e proteção dos seus dados? Disso a gente cuida, sem dor de cabeça para você."
+- **Desenvolvedor Fullstack — Walter Soares.** Constrói e mantém o site e os sistemas de cada cliente. Frase: "Ouve suas demandas com atenção, usa suas habilidades para desenvolver o software ideal para o seu negócio e fica à disposição para ajustá-lo do jeito que você deseja."
 
-Os três sócios são graduandos (Empreendedorismo/Administração, Direito e Engenharia de Software). Por isso os títulos usam a área de atuação ("Direito e contratos", "Desenvolvedor Fullstack") em vez de títulos profissionais regulamentados como "Advogado" ou "Engenheiro", que exigem registro em conselho de classe (OAB, CREA) e ainda não se aplicam à equipe.
+Os três sócios são graduandos (Empreendedorismo/Administração, Direito e Engenharia de Software). Por isso os títulos usam a área de atuação ("Jurídico e contratos", "Desenvolvedor Fullstack") em vez de títulos profissionais regulamentados como "Advogado" ou "Engenheiro", que exigem registro em conselho de classe (OAB, CREA) e ainda não se aplicam à equipe.
 
 ### 6.8 Dúvidas frequentes (FAQ, abre e fecha)
 - "Preciso jogar fora meu cardápio impresso?" Não. O digital funciona junto com o impresso.

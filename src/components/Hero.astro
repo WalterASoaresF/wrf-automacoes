@@ -19,7 +19,7 @@ import { HERO, ESTUDO } from '../data/site';
         <TextoRevelado texto={HERO.apoio} inicio={260} passoPalavra={14} passoLetra={6} />
       </p>
       <div class="hero__bloco hero__ctas" style="animation-delay: 420ms">
-        <Ctas />
+        <Ctas ordem="diagnostico-primeiro" />
       </div>
     </div>
 
@@ -58,10 +58,12 @@ import { HERO, ESTUDO } from '../data/site';
     animation: entrar-de-baixo 0.5s ease-out both;
   }
 
+  /* Chamada para o diagnóstico, logo acima dos botões */
   .hero__apoio {
     max-width: 40ch;
     font-size: var(--t-20);
-    color: var(--grafite);
+    font-weight: var(--peso-medio);
+    margin-bottom: -0.75rem;
   }
 
   /* Dado do estudo: número grande em cobalto, frase e fonte */

@@ -24,7 +24,7 @@
 
 ## Equipe
 
-Três sócios: João Felix (negócios e operação), Gustavo Rios (direito e contratos, LGPD) e Walter Soares (desenvolvimento fullstack).
+Três sócios: João Felix (negócios e operação), Gustavo Rios (jurídico e contratos, LGPD) e Walter Soares (desenvolvimento fullstack).
 
 ## Contato
 

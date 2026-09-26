@@ -110,8 +110,8 @@ export const RESULTADO_EXEMPLO = {
 // Enxuto de propósito: no celular o hero precisa caber em pouco mais de uma tela.
 // A caixa de busca animada saiu daqui e vive só na etapa 1 da demo.
 export const HERO = {
-  titulo: 'Quando procuram o que você vende, você aparece antes do concorrente?',
-  apoio: 'A WRF coloca seu negócio na internet e tira o trabalho repetitivo da sua equipe.',
+  titulo: 'Perdendo clientes para a concorrência porque não te acham na internet?',
+  apoio: 'Na dúvida? Faça o diagnóstico gratuito.',
 };
 
 // Dado citado no hero. Fonte externa informada pela equipe: conferir o texto exato e o
@@ -124,11 +124,25 @@ export const ESTUDO = {
 
 // Dores (seção 6.3)
 export const DORES_TITULO = 'Isso acontece no seu negócio?';
-export const DORES = [
-  'Quem procura na internet encontra o seu concorrente, não você.',
-  'Tudo ainda é feito à mão, sem nenhum sistema, e o negócio passa uma imagem de ultrapassado.',
-  'No horário de pico vira bagunça, e quem sente é o cliente.',
-  'Sua equipe gasta horas em tarefas repetitivas em vez de cuidar do que faz o negócio crescer.',
+export type IconeDor = 'busca' | 'papel' | 'relogio' | 'repeticao' | 'dinheiro';
+export const DORES: { texto: string; icone: IconeDor }[] = [
+  { texto: 'Quem procura na internet encontra o seu concorrente, não você.', icone: 'busca' },
+  {
+    texto: 'Tudo ainda é feito à mão, sem nenhum sistema, e o negócio passa uma imagem de ultrapassado.',
+    icone: 'papel',
+  },
+  {
+    texto: 'No horário de pico vira bagunça: o cliente sente, a organização interna trava e a sua equipe…',
+    icone: 'relogio',
+  },
+  {
+    texto: '…passa horas em tarefas repetitivas em vez de cuidar do que faz o negócio crescer.',
+    icone: 'repeticao',
+  },
+  {
+    texto: 'No fim das contas, você sente que poderia ganhar mais pela qualidade do que vende.',
+    icone: 'dinheiro',
+  },
 ];
 
 // Serviços (seção 6.4): cartões em rolagem horizontal. O último é o fechamento ("O resultado?").
@@ -166,19 +180,19 @@ export const SERVICOS: { rotulo: string; texto: string; nota?: string; icone?: I
 // Demo (seção 6.5). A etapa 1 usa a busca desenhada em código, sem marca de buscador.
 // O Casa do Dendê já é apresentado como fictício no hero; aqui só a etapa com números
 // ganha a nota "números simulados" (seção 9).
-export const DEMO_TITULO = 'O que fazemos por um restaurante';
+export const DEMO_TITULO = 'O que fazemos por um negócio';
 export const DEMO_INTRO =
-  'O caminho de um pedido, da busca no Google ao painel do dono, no Casa do Dendê, restaurante fictício que criamos para demonstração. Em outro tipo de negócio, adaptamos cada etapa à sua demanda.';
+  'Da busca à compra, da compra ao painel do proprietário. Para demonstrar, usamos o Casa do Dendê, um restaurante fictício. Em outro tipo de negócio, adaptamos cada etapa à sua demanda.';
 
 export const DEMO_ETAPAS: { texto: string; captura: ChaveCaptura | 'busca'; nota?: string }[] = [
-  { texto: 'O cliente pergunta ao Google ou a uma IA onde comer.', captura: 'busca' },
+  { texto: 'O cliente pergunta ao Google ou a uma IA onde comer, e o restaurante aparece em destaque.', captura: 'busca' },
   { texto: 'Encontra o site do restaurante.', captura: 'site' },
   { texto: 'Na mesa, escaneia o QR Code.', captura: 'qrcode' },
-  { texto: 'Monta o pedido pelo cardápio.', captura: 'cardapio' },
-  { texto: 'O cardápio sugere uma bebida, e ele aceita.', captura: 'carrinho' },
+  { texto: 'E monta o pedido pelo cardápio.', captura: 'cardapio' },
+  { texto: 'Mais que um PDF: o cardápio sugere complementos para o pedido, e ele aceita.', captura: 'carrinho' },
   { texto: 'Depois do pedido, ele avalia a experiência sem precisar se identificar.', captura: 'avaliacao' },
   {
-    texto: 'O dono vê quanto as sugestões venderam a mais.',
+    texto: 'O proprietário tem um painel onde comprova que as melhorias estão se pagando.',
     captura: 'painelResultados',
     nota: 'Números simulados do restaurante de demonstração.',
   },
@@ -194,7 +208,6 @@ export const PASSOS = [
 
 // Time (seção 6.7). Foto real em src/assets/time/<foto>. Nunca gerar foto com IA.
 // Sem foto ainda, o bloco mostra "Foto real pendente".
-export const TIME_INTRO = 'Somos três sócios. Cada um cuida de uma parte do que entregamos.';
 
 export const TIME: {
   area: string;
@@ -211,17 +224,17 @@ export const TIME: {
     foto: 'joao-felix.jpg',
   },
   {
-    area: 'Direito e contratos',
-    descricao: 'Cuida de contratos claros e do uso responsável dos dados, de acordo com a LGPD.',
+    area: 'Jurídico e contratos',
+    descricao: 'Elabora toda a parte contratual, com atenção ao uso responsável dos seus dados, de acordo com a LGPD.',
     nome: 'Gustavo Rios',
-    frase: 'Papelada, contrato e parte jurídica? Disso a gente cuida, sem dor de cabeça para você.',
-    foto: 'gustavo-rios.jpg',
+    frase: 'Papelada e proteção dos seus dados? Disso a gente cuida, sem dor de cabeça para você.',
+    foto: 'gustavo-rios.webp',
   },
   {
     area: 'Desenvolvedor Fullstack',
     descricao: 'Constrói e mantém o site e os sistemas de cada cliente.',
     nome: 'Walter Soares',
-    frase: 'Ouve suas demandas com atenção e usa o que sabe para desenvolver o software ideal para o seu negócio.',
+    frase: 'Ouve suas demandas com atenção, usa suas habilidades para desenvolver o software ideal para o seu negócio e fica à disposição para ajustá-lo do jeito que você deseja.',
     foto: 'walter-soares.jpg',
   },
 ];

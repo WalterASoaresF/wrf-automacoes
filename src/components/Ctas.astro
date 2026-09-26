@@ -1,42 +1,57 @@
 ---
-// Os dois CTAs do site, iguais no hero e na chamada final (seções 6.2, 6.9 e 7).
+// Os dois CTAs do site (seções 6.2, 6.9 e 7).
+// Padrão: WhatsApp em cobalto primeiro, diagnóstico em contorno ao lado.
+// No hero ("diagnostico-primeiro"): o diagnóstico vira o botão principal, em cobalto, e o
+// WhatsApp fica logo abaixo, em contorno. A ordem é a do HTML (não CSS "order"), para o Tab
+// seguir a mesma sequência que se vê na tela.
 import Setas from './Setas.astro';
 import { WHATSAPP_URL, FORM_URL, FORM_PENDENTE, CTA } from '../data/site';
 
 interface Props {
   // Em "Como funciona" só aparece o botão do diagnóstico.
   apenas?: 'diagnostico';
+  ordem?: 'whatsapp-primeiro' | 'diagnostico-primeiro';
 }
-const { apenas } = Astro.props;
+const { apenas, ordem = 'whatsapp-primeiro' } = Astro.props;
+const diagnosticoPrimeiro = ordem === 'diagnostico-primeiro';
+const itens = diagnosticoPrimeiro ? ['diagnostico', 'whatsapp'] : ['whatsapp', 'diagnostico'];
+const principal = itens[0];
+const visiveis = itens.filter((item) => !apenas || item === apenas);
 ---
 
-<div class="ctas">
+<div class:list={['ctas', { 'ctas--empilhados': diagnosticoPrimeiro }]}>
   {
-    !apenas && (
-      <div class="ctas__item">
-        <a class="botao botao--principal" href={WHATSAPP_URL} target="_blank" rel="noopener">
-          <span>{CTA.whatsapp.texto}</span>
-          <Setas />
-        </a>
-        <p class="nota">{CTA.whatsapp.nota}</p>
-      </div>
-    )
+    visiveis.map((item) => {
+      const estilo = item === principal && !apenas ? 'botao botao--principal' : 'botao botao--contorno';
+      if (item === 'whatsapp') {
+        return (
+          <div class="ctas__item">
+            <a class={estilo} href={WHATSAPP_URL} target="_blank" rel="noopener">
+              <span>{CTA.whatsapp.texto}</span>
+              <Setas />
+            </a>
+            <p class="nota">{CTA.whatsapp.nota}</p>
+          </div>
+        );
+      }
+      return (
+        <div class="ctas__item">
+          {FORM_PENDENTE ? (
+            <button class="botao botao--contorno" type="button" disabled>
+              {CTA.diagnostico.textoPendente}
+            </button>
+          ) : (
+            <a class={estilo} href={FORM_URL} target="_blank" rel="noopener">
+              <span>{CTA.diagnostico.texto}</span>
+              {item === principal && <Setas />}
+              <span class="visualmente-oculto"> (abre em nova aba)</span>
+            </a>
+          )}
+          <p class="nota">{FORM_PENDENTE ? CTA.diagnostico.notaPendente : CTA.diagnostico.nota}</p>
+        </div>
+      );
+    })
   }
-  <div class="ctas__item">
-    {
-      FORM_PENDENTE ? (
-        <button class="botao botao--contorno" type="button" disabled>
-          {CTA.diagnostico.textoPendente}
-        </button>
-      ) : (
-        <a class="botao botao--contorno" href={FORM_URL} target="_blank" rel="noopener">
-          {CTA.diagnostico.texto}
-          <span class="visualmente-oculto"> (abre em nova aba)</span>
-        </a>
-      )
-    }
-    <p class="nota">{FORM_PENDENTE ? CTA.diagnostico.notaPendente : CTA.diagnostico.nota}</p>
-  </div>
 </div>
 
 <style>
@@ -51,5 +66,17 @@ const { apenas } = Astro.props;
     display: grid;
     gap: 0.5rem;
     max-width: 22rem;
+  }
+
+  /* Um embaixo do outro, com a mesma largura */
+  .ctas--empilhados {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    max-width: 22rem;
+  }
+
+  .ctas--empilhados .botao {
+    width: 100%;
   }
 </style>
