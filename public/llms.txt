@@ -11,7 +11,7 @@
 
 ## O que a WRF não faz
 
-- Não integra com o iFood.
+- iFood não é o foco, mas é possível automatizar partes da operação de cozinha e entrega de quem usa o iFood, sob combinação.
 - Não cobra do cliente final: o pagamento continua na maquininha, com Pix, crédito ou débito.
 - O cardápio não pede nome, telefone nem CPF de quem faz o pedido.
 

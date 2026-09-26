@@ -199,7 +199,7 @@ Enxuto: no celular precisa caber em pouco mais de uma tela. Todo o texto sobe le
 - **H1:** "Perdendo clientes para a concorrência porque não te acham na internet?" (em forma de pergunta, para não afirmar algo sobre quem lê).
 - **Chamada:** "Na dúvida? Faça o diagnóstico gratuito."
 - **Botões, um embaixo do outro:** "Fazer diagnóstico gratuito" (principal, cobalto) e, abaixo, "Quero sair na frente da concorrência" (WhatsApp, contorno). No celular, as notas pequenas abaixo dos botões ficam escondidas no hero (continuam na chamada final, onde a ordem padrão se mantém: WhatsApp em cobalto primeiro).
-- **Dado citado, com fonte visível:** "46% dos entrevistados recorrem à tecnologia para pesquisar produtos ou serviços antes de comprar." Fonte: Estudo Prompt-me (Fbiz e On The Go), set. 2026. No desktop ocupa a coluna da direita, com o número grande; no celular fica compacto, depois dos botões. **Conferir o texto exato e o público do estudo antes de publicar** (seção 9).
+- **Dado citado, com fonte visível:** "46% dos entrevistados recorrem à tecnologia para pesquisar produtos ou serviços antes de comprar." Fonte: Estudo Prompt-me (Fbiz e On The Go), set. 2026. No desktop ocupa a coluna da direita, com o número grande; no celular fica compacto, depois dos botões. Texto e fonte confirmados pela equipe em 26/09/2026.
 - A caixa de busca animada saiu do hero (25/09/2026) e vive só na etapa 1 da demo.
 
 ### 6.3 Dores (seção curta, fundo Névoa, cartões com ícone)
@@ -246,19 +246,20 @@ Seguido do botão "Fazer diagnóstico gratuito".
 Só o título "Nosso time", sem texto de abertura. No celular, os três blocos viram uma trilha com rolagem horizontal.
 
 Três blocos com foto real, área, nome, descrição e frase:
-- **Negócios e operação — João Felix.** O empreendedor da equipe. Cuida da relação com o seu negócio e da implantação. Frase: "Está à disposição para te atender da melhor forma possível."
+- **Negócios e operação — João Felix.** CSM (gestor de sucesso do cliente) da equipe. Cuida da relação com o seu negócio e da implantação. Frase: "Está à disposição para te atender da melhor forma possível."
 - **Jurídico e contratos — Gustavo Rios.** Elabora toda a parte contratual, com atenção ao uso responsável dos seus dados, de acordo com a LGPD. Frase: "Papelada e proteção dos seus dados? Disso a gente cuida, sem dor de cabeça para você."
 - **Desenvolvedor Fullstack — Walter Soares.** Constrói e mantém o site e os sistemas de cada cliente. Frase: "Ouve suas demandas com atenção, usa suas habilidades para desenvolver o software ideal para o seu negócio e fica à disposição para ajustá-lo do jeito que você deseja."
 
 Os três sócios são graduandos (Empreendedorismo/Administração, Direito e Engenharia de Software). Por isso os títulos usam a área de atuação ("Jurídico e contratos", "Desenvolvedor Fullstack") em vez de títulos profissionais regulamentados como "Advogado" ou "Engenheiro", que exigem registro em conselho de classe (OAB, CREA) e ainda não se aplicam à equipe.
 
 ### 6.8 Dúvidas frequentes (FAQ, abre e fecha)
+- "É só para restaurante?" Não! Nossa especialidade são restaurantes, mas atendemos também qualquer negócio que ainda faz muito trabalho manual desnecessário. (Não dizer "entregamos bons resultados" enquanto não houver clientes que comprovem; seção 9.)
 - "Preciso jogar fora meu cardápio impresso?" Não. O digital funciona junto com o impresso.
 - "O sistema cobra do cliente?" Não. O pagamento continua como hoje, na maquininha, com Pix, crédito ou débito.
-- "Funciona com o iFood?" Hoje não integramos com o iFood. O foco é o atendimento dentro do restaurante.
+- "Funciona com o iFood?" Sim, podemos trabalhar com o iFood, embora não seja o nosso foco. Dá para automatizar partes da operação da cozinha e da entrega; o que faz sentido para o seu caso a gente combina na reunião.
 - "As sugestões são inteligência artificial?" São regras automáticas montadas com você, como "quem pede entrada ganha sugestão de bebida". Você decide o que é sugerido.
 - "Vocês guardam dados dos meus clientes?" O cardápio não pede nome, telefone nem CPF de quem faz o pedido.
-- "Quanto tempo leva para ficar pronto?" Depende do tamanho do cardápio e das necessidades do restaurante. Em média, uma semana.
+- "Quanto tempo leva para ficar pronto?" Depende do tamanho do projeto e das necessidades do seu negócio. Em média, uma semana.
 
 ### 6.9 Chamada final (fundo preto)
 - Título: "Seu concorrente já está sendo encontrado. E o seu negócio?"
@@ -326,7 +327,8 @@ A equipe inclui um sócio da área jurídica. O site é propaganda, então vale 
 - **Nenhum depoimento, logo de cliente ou número de resultado inventado.** Se não houver cliente real, a seção de depoimentos não existe.
 - Não prometer primeira posição no Google ou em IA.
 - Não chamar as sugestões de "inteligência artificial".
-- Não mencionar nota fiscal, pagamento online ou integração com iFood como recursos.
+- Não mencionar nota fiscal ou pagamento online como recursos.
+- iFood (revisto em 26/09/2026): pode-se dizer que a WRF trabalha com negócios que usam o iFood e automatiza a operação de cozinha e entrega, sob combinação. Não afirmar integração técnica pronta com o sistema do iFood.
 - Não usar marcas de terceiros nas capturas de marketing (ver seção 11).
 
 ---
@@ -342,9 +344,7 @@ A equipe inclui um sócio da área jurídica. O site é propaganda, então vale 
 6. ~~Prazo médio de implantação~~ — "Depende do tamanho do cardápio e das necessidades do seu restaurante. Em média, uma semana." (ver seção 6.8).
 
 **Ainda em aberto:**
-7. Foto real de João Felix (as de Gustavo Rios e Walter Soares já estão em `src/assets/time/`; a de João vai em `src/assets/time/joao-felix.jpg`).
-8. Confirmar o texto exato e o público do estudo Prompt-me (Fbiz / On The Go) citado no hero.
-9. Registro do domínio `.com.br` (quando houver o primeiro cliente pagante).
+7. Registro do domínio `.com.br` (quando houver o primeiro cliente pagante).
 
 Refazer as capturas do Casa do Dendê a partir da build de produção (sem o indicador "N" do modo de desenvolvimento) não é bloqueante — pode ser feito em paralelo à construção do site, desde que esteja pronto antes da publicação final.
 

@@ -114,8 +114,8 @@ export const HERO = {
   apoio: 'Na dúvida? Faça o diagnóstico gratuito.',
 };
 
-// Dado citado no hero. Fonte externa informada pela equipe: conferir o texto exato e o
-// público do estudo antes de publicar (CLAUDE.md, seção 9: nenhum número sem fonte real).
+// Dado citado no hero, com fonte visível (CLAUDE.md, seção 9: nenhum número sem fonte real).
+// Texto e fonte confirmados pela equipe em 26/09/2026.
 export const ESTUDO = {
   numero: '46%',
   texto: 'dos entrevistados recorrem à tecnologia para pesquisar produtos ou serviços antes de comprar.',
@@ -218,7 +218,7 @@ export const TIME: {
 }[] = [
   {
     area: 'Negócios e operação',
-    descricao: 'O empreendedor da equipe. Cuida da relação com o seu negócio e da implantação.',
+    descricao: 'CSM (gestor de sucesso do cliente) da equipe. Cuida da relação com o seu negócio e da implantação.',
     nome: 'João Felix',
     frase: 'Está à disposição para te atender da melhor forma possível.',
     foto: 'joao-felix.jpg',
@@ -245,6 +245,11 @@ export const CTA_FINAL_TITULO = 'Seu concorrente já está sendo encontrado. E o
 // FAQ (seção 6.8). Pergunta com resposta null não aparece na página nem no JSON-LD.
 export const FAQ: { pergunta: string; resposta: string | null }[] = [
   {
+    pergunta: 'É só para restaurante?',
+    resposta:
+      'Não! Nossa especialidade são restaurantes, mas atendemos também qualquer negócio que ainda faz muito trabalho manual desnecessário.',
+  },
+  {
     pergunta: 'Preciso jogar fora meu cardápio impresso?',
     resposta: 'Não. O digital funciona junto com o impresso.',
   },
@@ -254,7 +259,8 @@ export const FAQ: { pergunta: string; resposta: string | null }[] = [
   },
   {
     pergunta: 'Funciona com o iFood?',
-    resposta: 'Hoje não integramos com o iFood. O foco é o atendimento dentro do restaurante.',
+    resposta:
+      'Sim, podemos trabalhar com o iFood, embora não seja o nosso foco. Dá para automatizar partes da operação da cozinha e da entrega; o que faz sentido para o seu caso a gente combina na reunião.',
   },
   {
     pergunta: 'As sugestões são inteligência artificial?',
@@ -268,7 +274,7 @@ export const FAQ: { pergunta: string; resposta: string | null }[] = [
   {
     pergunta: 'Quanto tempo leva para ficar pronto?',
     resposta:
-      'Depende do tamanho do cardápio e das necessidades do seu restaurante. Em média, uma semana.',
+      'Depende do tamanho do projeto e das necessidades do seu negócio. Em média, uma semana.',
   },
 ];
 
