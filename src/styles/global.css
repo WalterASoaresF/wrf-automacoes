@@ -94,13 +94,13 @@ ol {
 }
 
 a {
-  color: var(--cobalto);
+  color: var(--cobalto-texto);
   text-underline-offset: 0.18em;
 }
 
 /* Foco visível: contorno cobalto de 2 px em tudo que é interativo */
 :focus-visible {
-  outline: 2px solid var(--cobalto);
+  outline: 2px solid var(--cobalto-texto);
   outline-offset: 3px;
 }
 
@@ -205,7 +205,7 @@ a {
 
 .botao--principal {
   background: var(--cobalto);
-  color: var(--branco);
+  color: var(--sobre-cobalto);
 }
 
 .botao--principal:hover {

@@ -8,6 +8,18 @@
   --grafite: #565b63;
   --linha: #d5d8dd;
   --cobalto: #1e3cf5;
+  /* Cobalto como cor de TEXTO, ícone ou contorno (no escuro precisa ser mais claro para ter
+     contraste) e a cor do texto que fica SOBRE um fundo cobalto (branca nos dois temas). */
+  --cobalto-texto: #1e3cf5;
+  --sobre-cobalto: #ffffff;
+
+  /* Peças que mudam com o tema */
+  --filtro-logo: none;
+  --sombra-escura: drop-shadow(0 0.25rem 0.4rem rgb(0 0 0 / 0.18)) drop-shadow(0 1.75rem 2.25rem rgb(0 0 0 / 0.28));
+  --halo-claro: drop-shadow(0 0 1px rgb(255 255 255 / 0.35)) drop-shadow(0 1.5rem 3rem rgb(255 255 255 / 0.08));
+  --sombra-aparelho: var(--sombra-escura);
+  --sombra-aparelho-inversa: var(--halo-claro);
+  color-scheme: light;
 
   /* Tipografia: uma família, duas larguras */
   --fonte: 'Archivo Variable', 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -34,4 +46,38 @@
   --secao: clamp(4rem, 3rem + 5vw, 7.5rem);
   --raio: 6px;
   --toque: 44px;
+}
+
+/* Modo escuro.
+   Os nomes --preto e --branco passam a significar "cor do texto" e "cor do fundo": no escuro
+   eles se invertem, e com isso todas as seções acompanham sem regra extra (as seções
+   "escuras" viram as claras, mantendo o contraste da página).
+   Vale em dois casos: o sistema da pessoa pede escuro e ela não escolheu claro no botão do
+   cabeçalho; ou ela escolheu escuro no botão (data-theme, gravado por src/scripts/tema.js). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --preto: #f3f4f6;
+    --branco: #0b0c0e;
+    --nevoa: #17191d;
+    --grafite: #a7acb5;
+    --linha: #2d3138;
+    --cobalto-texto: #8e9cff;
+    --filtro-logo: invert(1);
+    --sombra-aparelho: var(--halo-claro);
+    --sombra-aparelho-inversa: var(--sombra-escura);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --preto: #f3f4f6;
+  --branco: #0b0c0e;
+  --nevoa: #17191d;
+  --grafite: #a7acb5;
+  --linha: #2d3138;
+  --cobalto-texto: #8e9cff;
+  --filtro-logo: invert(1);
+  --sombra-aparelho: var(--halo-claro);
+  --sombra-aparelho-inversa: var(--sombra-escura);
 }

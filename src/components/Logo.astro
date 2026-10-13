@@ -23,8 +23,10 @@ const { tamanho = 'normal' } = Astro.props;
     align-items: center;
   }
 
+  /* A marca é um PNG preto; no modo escuro o filtro a inverte para branco */
   .logo :global(img) {
     width: auto;
+    filter: var(--filtro-logo);
   }
 
   .logo__completo {

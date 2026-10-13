@@ -27,8 +27,8 @@ const fotos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/time/*.{
                     alt={socio.nome ? `Foto de ${socio.nome}` : `Foto do sócio de ${socio.area}`}
                     formats={['avif', 'webp']}
                     fallbackFormat="webp"
-                    widths={[320, 480, 640]}
-                    sizes="(min-width: 860px) 360px, 92vw"
+                    widths={[144, 288, 432]}
+                    sizes="144px"
                     loading="lazy"
                     decoding="async"
                   />
@@ -63,11 +63,12 @@ const fotos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/time/*.{
   }
 
   .socio__foto {
-    aspect-ratio: 4 / 5;
+    width: 9rem;
+    aspect-ratio: 1;
     margin-bottom: 0.75rem;
     overflow: hidden;
     background: var(--nevoa);
-    border-radius: var(--raio);
+    border-radius: 50%;
   }
 
   .socio__foto :global(img) {
@@ -86,7 +87,7 @@ const fotos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/time/*.{
   }
 
   .socio__area {
-    color: var(--cobalto);
+    color: var(--cobalto-texto);
     font-weight: 700;
   }
 
@@ -102,7 +103,7 @@ const fotos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/time/*.{
   .socio__frase {
     margin-top: 0.5rem;
     padding-left: 0.9rem;
-    border-left: 2px solid var(--cobalto);
+    border-left: 2px solid var(--cobalto-texto);
     font-weight: var(--peso-medio);
     max-width: 36ch;
   }

@@ -62,6 +62,14 @@ const jsonLd = {
     <meta name="description" content={SITE.descricao} />
     <link rel="canonical" href={canonica} />
     <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Aplica o tema escolhido antes da primeira pintura (ver src/scripts/tema.js) -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('tema');
+        if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
 
     <link rel="preload" href={fonteLatina} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href={publico('favicon.png')} type="image/png" sizes="48x48" />

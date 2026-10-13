@@ -34,6 +34,18 @@ const links = [
       </nav>
     </details>
 
+    <!-- Só aparece com JavaScript (src/scripts/tema.js); sem ele o site segue o tema do sistema -->
+    <button class="cabecalho__tema" type="button" data-tema-botao aria-pressed="false" hidden>
+      <span class="visualmente-oculto">Modo escuro</span>
+      <svg class="cabecalho__tema-lua" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path>
+      </svg>
+      <svg class="cabecalho__tema-sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path>
+      </svg>
+    </button>
+
     <a class="botao botao--principal cabecalho__whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener">
       <span class="cabecalho__whatsapp-completo">{CTA.whatsappCurto}</span>
       <span class="cabecalho__whatsapp-curto" aria-hidden="true">WhatsApp</span>
@@ -91,6 +103,47 @@ const links = [
     text-decoration-thickness: 2px;
   }
 
+  /* Botão de tema: mostra a lua no claro (ir para o escuro) e o sol no escuro */
+  .cabecalho__tema {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: var(--toque);
+    height: var(--toque);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--preto);
+    cursor: pointer;
+  }
+
+  .cabecalho__tema[hidden] {
+    display: none;
+  }
+
+  .cabecalho__tema:hover {
+    background: var(--nevoa);
+  }
+
+  .cabecalho__tema svg {
+    width: 1.35rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .cabecalho__tema-sol,
+  .cabecalho__tema[aria-pressed='true'] .cabecalho__tema-lua {
+    display: none;
+  }
+
+  .cabecalho__tema[aria-pressed='true'] .cabecalho__tema-sol {
+    display: block;
+  }
+
   .cabecalho__whatsapp {
     flex: none;
     min-height: var(--toque);
@@ -133,7 +186,7 @@ const links = [
   }
 
   .cabecalho__menu[open] summary {
-    color: var(--cobalto);
+    color: var(--cobalto-texto);
   }
 
   .cabecalho__menu nav {
@@ -189,3 +242,7 @@ const links = [
     }
   }
 </style>
+
+<script>
+  import '../scripts/tema';
+</script>

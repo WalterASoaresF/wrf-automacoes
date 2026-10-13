@@ -93,6 +93,15 @@ O logo é preto sobre branco, geométrico: um losango precedido de duas setas qu
 
 **Por que cobalto:** as capturas do Casa do Dendê são em tons de dendê (laranja terroso). Um site preto e branco com um azul cobalto faz essas telas se destacarem como a parte colorida da página, já que azul e laranja são cores complementares. O azul também comunica confiança e tecnologia, adequado a uma equipe com área jurídica e de engenharia. Texto branco sobre cobalto tem contraste acima de 7:1.
 
+### 4.2.1 Modo escuro (13/10/2026)
+
+O site tem tema claro e escuro. Sem escolha, segue o tema do sistema de quem visita; o botão de sol/lua no cabeçalho troca e guarda a escolha no navegador (`localStorage`, sem cookie).
+
+- No escuro, os tokens `--preto` e `--branco` se invertem (passam a valer como "cor do texto" e "cor do fundo"), então as seções acompanham sem regra extra; a chamada final, preta no claro, fica clara no escuro.
+- Fundo `#0B0C0E`, texto `#F3F4F6`, Névoa `#17191D`, Grafite `#A7ACB5`, Linha `#2D3138`.
+- `--cobalto` (`#1E3CF5`) continua sendo o fundo de botões, com texto `--sobre-cobalto` (branco nos dois temas). Para texto, ícone e contorno em cobalto usar `--cobalto-texto`, que no escuro vira `#8E9CFF` para manter o contraste.
+- O logo (PNG preto) é invertido por filtro; as capturas trocam a sombra escura por um halo claro.
+
 ### 4.3 Tipografia
 
 Uma única família, **Archivo** (variável, com eixo de largura), usada em duas larguras:
@@ -245,7 +254,7 @@ Seguido do botão "Fazer diagnóstico gratuito".
 ### 6.7 Nosso time (obrigatória)
 Só o título "Nosso time", sem texto de abertura. No celular, os três blocos viram uma trilha com rolagem horizontal.
 
-Três blocos com foto real, área, nome, descrição e frase:
+Três blocos com foto real (pequena, em círculo de 9rem), área, nome, descrição e frase:
 - **Negócios e operação — João Felix.** CSM (gestor de sucesso do cliente) da equipe. Cuida da relação com o seu negócio e da implantação. Frase: "Está à disposição para te atender da melhor forma possível."
 - **Jurídico e contratos — Gustavo Rios.** Elabora toda a parte contratual, com atenção ao uso responsável dos seus dados, de acordo com a LGPD. Frase: "Papelada e proteção dos seus dados? Disso a gente cuida, sem dor de cabeça para você."
 - **Desenvolvedor Fullstack — Walter Soares.** Constrói e mantém o site e os sistemas de cada cliente. Frase: "Ouve suas demandas com atenção, usa suas habilidades para desenvolver o software ideal para o seu negócio e fica à disposição para ajustá-lo do jeito que você deseja."
