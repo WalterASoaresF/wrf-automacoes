@@ -14,4 +14,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://wrf-automacoes.pages.dev/sitemap-index.xml
+Sitemap: https://wrf-automacoes.waltersoaresbes.workers.dev/sitemap-index.xml

@@ -29,14 +29,14 @@ O próprio site é a prova de competência: ele precisa ser rápido, bem ranquea
 | Item | Escolha | Motivo |
 |---|---|---|
 | Hospedagem | **Cloudflare Pages (plano gratuito)** | Permite uso comercial no plano grátis, CDN global, HTTPS automático, deploy a cada push no GitHub |
-| URL | `wrf-automacoes.pages.dev` (verificar disponibilidade do nome) | Subdomínio limpo e gratuito |
+| URL | `wrf-automacoes.waltersoaresbes.workers.dev` | Endereço gratuito do projeto no Cloudflare (criado como Worker com arquivos estáticos em 13/10/2026). É o padrão em `astro.config.mjs` e `site.ts`; ao registrar o domínio próprio, trocar nesses dois arquivos, em `public/robots.txt` e em `public/llms.txt` |
 | Código | Repositório no GitHub (grátis) | Deploy automático conectado ao Cloudflare Pages |
 | Analytics | **Cloudflare Web Analytics** (grátis) | Não usa cookies, então não exige banner de cookies |
 | Formulário do diagnóstico | **Tally** (grátis) ou Google Forms | Fora do site; a landing só leva até ele |
 
 **Não usar Vercel no plano gratuito (Hobby):** os termos da Vercel restringem o plano Hobby a uso pessoal e não comercial, e um site que divulga serviços pagos conta como uso comercial.
 
-**Nota honesta sobre domínio:** não existe domínio `.com.br` gratuito. O registro no Registro.br custa cerca de R$ 40 por ano. Recomendação da equipe: começar em `pages.dev` e registrar `wrfautomacoes.com.br` assim que o primeiro cliente pagar, porque uma empresa que vende posicionamento digital usando subdomínio de terceiro enfraquece o discurso. A troca é simples: o Cloudflare Pages aceita domínio próprio sem custo adicional.
+**Nota honesta sobre domínio:** não existe domínio `.com.br` gratuito. O registro no Registro.br custa cerca de R$ 40 por ano. Recomendação da equipe: começar em `workers.dev` e registrar `wrfautomacoes.com.br` assim que o primeiro cliente pagar, porque uma empresa que vende posicionamento digital usando subdomínio de terceiro enfraquece o discurso. A troca é simples: o Cloudflare aceita domínio próprio sem custo adicional (aba Domains do projeto).
 
 ---
 

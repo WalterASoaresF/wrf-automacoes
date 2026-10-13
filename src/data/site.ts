@@ -3,7 +3,7 @@
 
 export const SITE = {
   nome: 'WRF Automações',
-  url: 'https://wrf-automacoes.pages.dev',
+  url: 'https://wrf-automacoes.waltersoaresbes.workers.dev',
   titulo: 'WRF Automações | Presença digital e automação para negócios em Salvador',
   descricao:
     'Site preparado para o Google e para a IA, e software sob medida para tirar o trabalho repetitivo do seu negócio. Salvador e Lauro de Freitas.',
